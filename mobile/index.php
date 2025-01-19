@@ -1,6 +1,5 @@
 <?php
-$pcPath = 'landscape';
-$mobilePath = 'portrait';
+$pcPath = '../portrait';
 
 // 函数：从目录中获取图片列表
 function getImagesFromDir($path) {
@@ -22,16 +21,8 @@ function generateImagePath($path, $img) {
     return $path . '/' . $img;
 }
 
-// 检测用户代理以区分手机和电脑访问
-$userAgent = $_SERVER['HTTP_USER_AGENT'];
-$isMobile = preg_match('/(android|iphone|ipad|ipod|blackberry|windows phone)/i', $userAgent);
-
-// 根据访问设备设置图片路径
-if ($isMobile) {
-    $path = $mobilePath;
-} else {
-    $path = $pcPath;
-}
+// 设置图片路径为 portrait
+$path = $pcPath;
 
 // 缓存图片列表
 $imgList = getImagesFromDir($path);
@@ -70,4 +61,3 @@ $img_path = generateImagePath($path, $img);
 // 直接输出所选的随机图片
 readfile($img_path);
 ?>
-
